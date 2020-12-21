@@ -112,7 +112,7 @@ ServerlessDeploymentBucketName: serverless-lambda-step-f-serverlessdeploymentbuc
 Test
 ----
 
-Invoke the Proxy Lambda by running `sls invoke -f proxy -l`:
+Invoke the Proxy Lambda by running ` sls invoke -f proxy -l `:
 
 [source.console]
 ----
