@@ -1,0 +1,13 @@
+{
+  "name": "serverless-lambda-step-functions",
+  "description": "An example of creating, deploying and invoking AWS Lambda Function which calls a Step Functions",
+  "version": "1.0.0",
+  "dependencies": {
+    "aws-sdk": "^2.814.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^6.8.0",
+    "serverless-pseudo-parameters": "^2.5.0",
+    "serverless-step-functions": "^2.29.0"
+  }
+}
