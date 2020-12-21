@@ -129,3 +129,7 @@ Undeploy
 --------
 
 - Run `serverless remove`
+
+References
+----------
+- Invoke AWS Step Function from AWS Lambda using the Serverless Framework, _https://medium.com/@iamNoah_/invoke-aws-step-function-from-aws-lambda-using-the-serverless-framework-21b7fde38a42_
