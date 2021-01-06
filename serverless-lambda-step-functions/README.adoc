@@ -130,6 +130,57 @@ Undeploy
 
 - Run `serverless remove`
 
+Run locally
+-----------
+
+[source.console]
+----
+𝜆 serverless invoke local --function helloWorld
+{
+    "statusCode": 200,
+    "body": "{\"message\":\"hello world!\"}"
+}
+----
+
+Debugging
+---------
+
+With `launch.json` file created by VS Code:
+
+[source.console]
+----
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Serverless Lambda Step Functions",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "/usr/local/bin/sls",
+      "args": [
+        "invoke",
+        "local",
+        "-f",
+        "helloWorld",
+        "--data",
+        "{}"
+      ]
+    }
+  ]
+}
+----
+
+Debugging AWS Lambda code with `Node.js` and `serverless` in VS Code:
+
+image::DEBUGGING.png[Debugging AWS Lambda in VS Code]
+
+
 References
 ----------
 - Invoke AWS Step Function from AWS Lambda using the Serverless Framework, _https://medium.com/@iamNoah_/invoke-aws-step-function-from-aws-lambda-using-the-serverless-framework-21b7fde38a42_
