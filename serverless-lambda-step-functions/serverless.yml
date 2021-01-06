@@ -26,6 +26,7 @@ provider:
       Action:
         - states:StartExecution
       Resource: "*"
+  lambdaHashingVersion: 20201221 # optional, version of hashing algorithm that should be used by the framework
 
 # you can overwrite defaults here
 #  stage: dev
