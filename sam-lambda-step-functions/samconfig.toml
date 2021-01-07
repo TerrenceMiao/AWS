@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "stock-trading-example"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1qfxu9y982ao"
+s3_prefix = "stock-trading-example"
+region = "ap-southeast-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
