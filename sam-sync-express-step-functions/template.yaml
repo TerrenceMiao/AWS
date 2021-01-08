@@ -11,7 +11,7 @@ Parameters:
     Type: String
     Description: (Required) A validated SES email address for receiving new submissions.
     MaxLength: 70
-    Default: terrence.miao@auspost.com.au
+    Default: default@email.com
     MinLength: 4
     ConstraintDescription: Required. Must be a SES verified email address.
 
@@ -19,8 +19,6 @@ Parameters:
 Globals:
   Function:
     Timeout: 10
-    Handler: index.handler
-    Runtime: nodejs12.x
     MemorySize: 128
     Tracing: Active
 
@@ -47,7 +45,7 @@ Resources:
     Properties:
       CodeUri: functions/sendEmailConfirmation/
       Handler: index.handler
-      Runtime: nodejs12.x          
+      Runtime: nodejs12.x
       Environment:
         Variables:
           ValidatedEmail: !Ref ValidatedEmail
@@ -60,14 +58,14 @@ Resources:
     Properties:
       CodeUri: functions/GenerateReferenceNumber/
       Handler: index.handler
-      Runtime: nodejs12.x          
+      Runtime: nodejs12.x
 
   DetectSentiment:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: functions/detectSentiment/
       Handler: index.handler
-      Runtime: nodejs12.x          
+      Runtime: nodejs12.x
       Policies:
         - ComprehendBasicAccessPolicy: {}
 

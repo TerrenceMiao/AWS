@@ -4,7 +4,7 @@ This application uses a Synchronous Express workflow to analyse a contact form s
 
 Read more about Synchronous Express Workflows in this [AWS blog post](https://aws.amazon.com/blogs/compute/new-synchronous-express-workflows-for-aws-step-functions/).
 
-![enter image description here](resources/sam-sync-express-step-functions.png)
+![AWS SAM Synchronous Call Express Step Functions](resources/sam-sync-express-step-functions.png)
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders:
 
@@ -40,8 +40,8 @@ To use the SAM CLI, you need the following tools:
 To build and deploy your application for the first time, run the following in your shell:
 
 ```bash
-sam build
-sam deploy --guided
+𝜆 sam build
+𝜆 sam deploy --guided
 ```
 
 The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
@@ -61,6 +61,34 @@ Build the Lambda functions in your application with the `sam build --use-contain
 
 ```bash
 𝜆 sam build
+Building codeuri: functions/sendEmailConfirmation/ runtime: nodejs12.x metadata: {} functions: ['NotifyAdminWithSES']
+Running NodejsNpmBuilder:NpmPack
+Running NodejsNpmBuilder:CopyNpmrc
+Running NodejsNpmBuilder:CopySource
+Running NodejsNpmBuilder:NpmInstall
+Running NodejsNpmBuilder:CleanUpNpmrc
+Building codeuri: functions/detectSentiment/ runtime: nodejs12.x metadata: {} functions: ['DetectSentiment']
+Running NodejsNpmBuilder:NpmPack
+Running NodejsNpmBuilder:CopyNpmrc
+Running NodejsNpmBuilder:CopySource
+Running NodejsNpmBuilder:NpmInstall
+Running NodejsNpmBuilder:CleanUpNpmrc
+Building codeuri: functions/GenerateReferenceNumber/ runtime: nodejs12.x metadata: {} functions: ['GenerateReferenceNumber']
+Running NodejsNpmBuilder:NpmPack
+Running NodejsNpmBuilder:CopyNpmrc
+Running NodejsNpmBuilder:CopySource
+Running NodejsNpmBuilder:NpmInstall
+Running NodejsNpmBuilder:CleanUpNpmrc
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Invoke Function: sam local invoke
+[*] Deploy: sam deploy --guided
 ```
 
 The SAM CLI installs dependencies defined in `functions/*/package.json`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
@@ -69,41 +97,41 @@ The SAM CLI installs dependencies defined in `functions/*/package.json`, creates
 
 ```bash
 𝜆 sam deploy
-Uploading to sam-synchronous-express-step-functions/5b1ae4f46a622c88c1422e8a90f99923  3273 / 3273.0  (100.00%)
+Uploading to sam-sync-express-step-functions/5b1ae4f46a622c88c1422e8a90f99923  3273 / 3273.0  (100.00%)
 
 	Deploying with following values
 	===============================
-	Stack name                   : sam-synchronous-express-step-functions
+	Stack name                   : sam-sync-express-step-functions
 	Region                       : ap-southeast-2
 	Confirm changeset            : True
 	Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-1qfxu9y982ao
 	Capabilities                 : ["CAPABILITY_IAM"]
-	Parameter overrides          : {"ValidatedEmail": "terrence.miao@auspost.com.au"}
+	Parameter overrides          : {"ValidatedEmail": "terrence.miao at paradise dot org"}
 	Signing Profiles             : {}
 
 Initiating deployment
 =====================
-Uploading to sam-synchronous-express-step-functions/9c95bdd829707b01e875eb95f78c22aa.template  4606 / 4606.0  (100.00%)
+Uploading to sam-sync-express-step-functions/9c95bdd829707b01e875eb95f78c22aa.template  4606 / 4606.0  (100.00%)
 
 Waiting for changeset to be created..
 
 CloudFormation stack changeset
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Operation                                                             LogicalResourceId                                                     ResourceType                                                          Replacement
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-+ Add                                                                 DetectSentimentRole                                                   AWS::IAM::Role                                                        N/A
-+ Add                                                                 DetectSentiment                                                       AWS::Lambda::Function                                                 N/A
-+ Add                                                                 FormDataTable                                                         AWS::DynamoDB::Table                                                  N/A
-+ Add                                                                 GenerateReferenceNumberRole                                           AWS::IAM::Role                                                        N/A
-+ Add                                                                 GenerateReferenceNumber                                               AWS::Lambda::Function                                                 N/A
-+ Add                                                                 HttpApiRole                                                           AWS::IAM::Role                                                        N/A
-+ Add                                                                 HttpApiforSyncWFApiGatewayDefaultStage                                AWS::ApiGatewayV2::Stage                                              N/A
-+ Add                                                                 HttpApiforSyncWF                                                      AWS::ApiGatewayV2::Api                                                N/A
-+ Add                                                                 NotifyAdminWithSESRole                                                AWS::IAM::Role                                                        N/A
-+ Add                                                                 NotifyAdminWithSES                                                    AWS::Lambda::Function                                                 N/A
-+ Add                                                                 ProcessFormStateMachineExpressSyncRole                                AWS::IAM::Role                                                        N/A
-+ Add                                                                 ProcessFormStateMachineExpressSync                                    AWS::StepFunctions::StateMachine                                      N/A
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+Operation  LogicalResourceId                       ResourceType                      Replacement
+------------------------------------------------------------------------------------------------
++ Add      DetectSentimentRole                     AWS::IAM::Role                    N/A
++ Add      DetectSentiment                         AWS::Lambda::Function             N/A
++ Add      FormDataTable                           AWS::DynamoDB::Table              N/A
++ Add      GenerateReferenceNumberRole             AWS::IAM::Role                    N/A
++ Add      GenerateReferenceNumber                 AWS::Lambda::Function             N/A
++ Add      HttpApiRole                             AWS::IAM::Role                    N/A
++ Add      HttpApiforSyncWFApiGatewayDefaultStage  AWS::ApiGatewayV2::Stage          N/A
++ Add      HttpApiforSyncWF                        AWS::ApiGatewayV2::Api            N/A
++ Add      NotifyAdminWithSESRole                  AWS::IAM::Role                    N/A
++ Add      NotifyAdminWithSES                      AWS::Lambda::Function             N/A
++ Add      ProcessFormStateMachineExpressSyncRole  AWS::IAM::Role                    N/A
++ Add      ProcessFormStateMachineExpressSync      AWS::StepFunctions::StateMachine  N/A
+------------------------------------------------------------------------------------------------
 
 Changeset created successfully. arn:aws:cloudformation:ap-southeast-2:755034721059:changeSet/samcli-deploy1610082245/0717a5cf-a8f5-4bfd-bdf5-816c95d07209
 
@@ -115,59 +143,59 @@ Deploy this changeset? [y/N]: y
 2021-01-08 16:04:50 - Waiting for stack create/update to complete
 
 CloudFormation events from changeset
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ResourceStatus                                                        ResourceType                                                          LogicalResourceId                                                     ResourceStatusReason
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        DetectSentimentRole                                                   Resource creation Initiated
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        GenerateReferenceNumberRole                                           -
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        NotifyAdminWithSESRole                                                -
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        DetectSentimentRole                                                   -
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        NotifyAdminWithSESRole                                                Resource creation Initiated
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        GenerateReferenceNumberRole                                           Resource creation Initiated
-CREATE_IN_PROGRESS                                                    AWS::DynamoDB::Table                                                  FormDataTable                                                         Resource creation Initiated
-CREATE_IN_PROGRESS                                                    AWS::DynamoDB::Table                                                  FormDataTable                                                         -
-CREATE_COMPLETE                                                       AWS::IAM::Role                                                        GenerateReferenceNumberRole                                           -
-CREATE_COMPLETE                                                       AWS::IAM::Role                                                        DetectSentimentRole                                                   -
-CREATE_COMPLETE                                                       AWS::IAM::Role                                                        NotifyAdminWithSESRole                                                -
-CREATE_IN_PROGRESS                                                    AWS::Lambda::Function                                                 DetectSentiment                                                       -
-CREATE_IN_PROGRESS                                                    AWS::Lambda::Function                                                 GenerateReferenceNumber                                               -
-CREATE_COMPLETE                                                       AWS::Lambda::Function                                                 GenerateReferenceNumber                                               -
-CREATE_COMPLETE                                                       AWS::Lambda::Function                                                 DetectSentiment                                                       -
-CREATE_IN_PROGRESS                                                    AWS::Lambda::Function                                                 DetectSentiment                                                       Resource creation Initiated
-CREATE_IN_PROGRESS                                                    AWS::Lambda::Function                                                 GenerateReferenceNumber                                               Resource creation Initiated
-CREATE_IN_PROGRESS                                                    AWS::Lambda::Function                                                 NotifyAdminWithSES                                                    -
-CREATE_IN_PROGRESS                                                    AWS::Lambda::Function                                                 NotifyAdminWithSES                                                    Resource creation Initiated
-CREATE_COMPLETE                                                       AWS::Lambda::Function                                                 NotifyAdminWithSES                                                    -
-CREATE_COMPLETE                                                       AWS::DynamoDB::Table                                                  FormDataTable                                                         -
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        ProcessFormStateMachineExpressSyncRole                                -
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        ProcessFormStateMachineExpressSyncRole                                Resource creation Initiated
-CREATE_COMPLETE                                                       AWS::IAM::Role                                                        ProcessFormStateMachineExpressSyncRole                                -
-CREATE_IN_PROGRESS                                                    AWS::StepFunctions::StateMachine                                      ProcessFormStateMachineExpressSync                                    -
-CREATE_COMPLETE                                                       AWS::StepFunctions::StateMachine                                      ProcessFormStateMachineExpressSync                                    -
-CREATE_IN_PROGRESS                                                    AWS::StepFunctions::StateMachine                                      ProcessFormStateMachineExpressSync                                    Resource creation Initiated
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        HttpApiRole                                                           -
-CREATE_IN_PROGRESS                                                    AWS::IAM::Role                                                        HttpApiRole                                                           Resource creation Initiated
-CREATE_COMPLETE                                                       AWS::IAM::Role                                                        HttpApiRole                                                           -
-CREATE_IN_PROGRESS                                                    AWS::ApiGatewayV2::Api                                                HttpApiforSyncWF                                                      -
-CREATE_COMPLETE                                                       AWS::ApiGatewayV2::Api                                                HttpApiforSyncWF                                                      -
-CREATE_IN_PROGRESS                                                    AWS::ApiGatewayV2::Api                                                HttpApiforSyncWF                                                      Resource creation Initiated
-CREATE_IN_PROGRESS                                                    AWS::ApiGatewayV2::Stage                                              HttpApiforSyncWFApiGatewayDefaultStage                                -
-CREATE_COMPLETE                                                       AWS::ApiGatewayV2::Stage                                              HttpApiforSyncWFApiGatewayDefaultStage                                -
-CREATE_IN_PROGRESS                                                    AWS::ApiGatewayV2::Stage                                              HttpApiforSyncWFApiGatewayDefaultStage                                Resource creation Initiated
-CREATE_COMPLETE                                                       AWS::CloudFormation::Stack                                            sam-synchronous-express-step-functions                                -
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+ResourceStatus      ResourceType                      LogicalResourceId                       ResourceStatusReason
+-------------------------------------------------------------------------------------------------------------------------
+CREATE_IN_PROGRESS  AWS::IAM::Role                    DetectSentimentRole                     Resource creation Initiated
+CREATE_IN_PROGRESS  AWS::IAM::Role                    GenerateReferenceNumberRole             -
+CREATE_IN_PROGRESS  AWS::IAM::Role                    NotifyAdminWithSESRole                  -
+CREATE_IN_PROGRESS  AWS::IAM::Role                    DetectSentimentRole                     -
+CREATE_IN_PROGRESS  AWS::IAM::Role                    NotifyAdminWithSESRole                  Resource creation Initiated
+CREATE_IN_PROGRESS  AWS::IAM::Role                    GenerateReferenceNumberRole             Resource creation Initiated
+CREATE_IN_PROGRESS  AWS::DynamoDB::Table              FormDataTable                           Resource creation Initiated
+CREATE_IN_PROGRESS  AWS::DynamoDB::Table              FormDataTable                           -
+CREATE_COMPLETE     AWS::IAM::Role                    GenerateReferenceNumberRole             -
+CREATE_COMPLETE     AWS::IAM::Role                    DetectSentimentRole                     -
+CREATE_COMPLETE     AWS::IAM::Role                    NotifyAdminWithSESRole                  -
+CREATE_IN_PROGRESS  AWS::Lambda::Function             DetectSentiment                         -
+CREATE_IN_PROGRESS  AWS::Lambda::Function             GenerateReferenceNumber                 -
+CREATE_COMPLETE     AWS::Lambda::Function             GenerateReferenceNumber                 -
+CREATE_COMPLETE     AWS::Lambda::Function             DetectSentiment                         -
+CREATE_IN_PROGRESS  AWS::Lambda::Function             DetectSentiment                         Resource creation Initiated
+CREATE_IN_PROGRESS  AWS::Lambda::Function             GenerateReferenceNumber                 Resource creation Initiated
+CREATE_IN_PROGRESS  AWS::Lambda::Function             NotifyAdminWithSES                      -
+CREATE_IN_PROGRESS  AWS::Lambda::Function             NotifyAdminWithSES                      Resource creation Initiated
+CREATE_COMPLETE     AWS::Lambda::Function             NotifyAdminWithSES                      -
+CREATE_COMPLETE     AWS::DynamoDB::Table              FormDataTable                           -
+CREATE_IN_PROGRESS  AWS::IAM::Role                    ProcessFormStateMachineExpressSyncRole  -
+CREATE_IN_PROGRESS  AWS::IAM::Role                    ProcessFormStateMachineExpressSyncRole  Resource creation Initiated
+CREATE_COMPLETE     AWS::IAM::Role                    ProcessFormStateMachineExpressSyncRole  -
+CREATE_IN_PROGRESS  AWS::StepFunctions::StateMachine  ProcessFormStateMachineExpressSync      -
+CREATE_COMPLETE     AWS::StepFunctions::StateMachine  ProcessFormStateMachineExpressSync      -
+CREATE_IN_PROGRESS  AWS::StepFunctions::StateMachine  ProcessFormStateMachineExpressSync      Resource creation Initiated
+CREATE_IN_PROGRESS  AWS::IAM::Role                    HttpApiRole                             -
+CREATE_IN_PROGRESS  AWS::IAM::Role                    HttpApiRole                             Resource creation Initiated
+CREATE_COMPLETE     AWS::IAM::Role                    HttpApiRole                             -
+CREATE_IN_PROGRESS  AWS::ApiGatewayV2::Api            HttpApiforSyncWF                        -
+CREATE_COMPLETE     AWS::ApiGatewayV2::Api            HttpApiforSyncWF                        -
+CREATE_IN_PROGRESS  AWS::ApiGatewayV2::Api            HttpApiforSyncWF                        Resource creation Initiated
+CREATE_IN_PROGRESS  AWS::ApiGatewayV2::Stage          HttpApiforSyncWFApiGatewayDefaultStage  -
+CREATE_COMPLETE     AWS::ApiGatewayV2::Stage          HttpApiforSyncWFApiGatewayDefaultStage  -
+CREATE_IN_PROGRESS  AWS::ApiGatewayV2::Stage          HttpApiforSyncWFApiGatewayDefaultStage  Resource creation Initiated
+CREATE_COMPLETE     AWS::CloudFormation::Stack        sam-sync-express-step-functions         -
+-------------------------------------------------------------------------------------------------------------------------
 
 CloudFormation outputs from deployed stack
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
 Outputs
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
 Key                 NotifyAdminWithSES
 Description         Lambda Function ARN
-Value               arn:aws:lambda:ap-southeast-2:755034721059:function:sam-synchronous-express-step-fu-NotifyAdminWithSES-1S74BCQW5DJYI
+Value               arn:aws:lambda:ap-southeast-2:755034721059:function:sam-sync-express-step-fu-NotifyAdminWithSES-1S74BCQW5DJYI
 
 Key                 NotifyAdminWithSESIamRole
 Description         Implicit IAM Role created for function
-Value               arn:aws:iam::755034721059:role/sam-synchronous-express-ste-NotifyAdminWithSESRole-1GIN7OTT3BI8
+Value               arn:aws:iam::755034721059:role/sam-sync-express-ste-NotifyAdminWithSESRole-1GIN7OTT3BI8
 
 Key                 HelloWorldApi
 Description         Sync WF API endpoint
@@ -175,10 +203,10 @@ Value               https://95t91rry59.execute-api.ap-southeast-2.amazonaws.com
 
 Key                 FormDataTable
 Description         DynamoDB Table
-Value               sam-synchronous-express-step-functions-FormDataTable-1VRY3EBUR3JIZ
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Value               sam-sync-express-step-functions-FormDataTable-1VRY3EBUR3JIZ
+----------------------------------------------------------------------------------------------------------------------------------------
 
-Successfully created/updated stack - sam-synchronous-express-step-functions in ap-southeast-2
+Successfully created/updated stack - sam-sync-express-step-functions in ap-southeast-2
 ```
 
 ```bash
@@ -223,7 +251,7 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-sam-sync-express-step-functions$ sam logs -n GenerateReferenceNumber --stack-name sam-sync-express-step-functions --tail
+𝜆 sam logs -n GenerateReferenceNumber --stack-name sam-sync-express-step-functions --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
@@ -234,7 +262,7 @@ You can find more information and examples about filtering Lambda function logs 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
-aws cloudformation delete-stack --stack-name sam-sync-express-step-functions
+𝜆 aws cloudformation delete-stack --stack-name sam-sync-express-step-functions
 ```
 
 ## Resources
