@@ -46,6 +46,8 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: functions/sendEmailConfirmation/
+      Handler: index.handler
+      Runtime: nodejs12.x          
       Environment:
         Variables:
           ValidatedEmail: !Ref ValidatedEmail
@@ -57,11 +59,15 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: functions/GenerateReferenceNumber/
+      Handler: index.handler
+      Runtime: nodejs12.x          
 
   DetectSentiment:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: functions/detectSentiment/
+      Handler: index.handler
+      Runtime: nodejs12.x          
       Policies:
         - ComprehendBasicAccessPolicy: {}
 
