@@ -56,7 +56,7 @@ Resources:
   GenerateReferenceNumber:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: functions/GenerateReferenceNumber/
+      CodeUri: functions/generateReferenceNumber/
       Handler: index.handler
       Runtime: nodejs12.x
 
@@ -93,7 +93,7 @@ Resources:
             FunctionName: !Ref GenerateReferenceNumber
         - DynamoDBWritePolicy:
             TableName: !Ref FormDataTable
-      Type: EXPRESS
+      Type: STANDARD
 
   ##########################################################################
   #   HTTP API                                                             #
