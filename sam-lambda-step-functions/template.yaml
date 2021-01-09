@@ -34,7 +34,7 @@ Resources:
             FunctionName: !Ref StockBuyerFunction
         - DynamoDBWritePolicy:
             TableName: !Ref TransactionTable
-      Type: EXPRESS
+      Type: STANDARD
 
   StockCheckerFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
