@@ -34,8 +34,8 @@ To use the SAM CLI, you need the following tools:
 To build and deploy your application for the first time, run the following in your shell:
 
 ```bash
-sam build
-sam deploy --guided
+𝜆 sam build
+𝜆 sam deploy --guided
 ```
 
 The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
@@ -53,7 +53,35 @@ You can find your State Machine ARN in the output values displayed after deploym
 Build the Lambda functions in your application with the `sam build --use-container` command.
 
 ```bash
-sam-lambda-step-functions$ sam build
+𝜆 sam build
+Building codeuri: functions/stock-checker/ runtime: nodejs12.x metadata: {} functions: ['StockCheckerFunction']
+Running NodejsNpmBuilder:NpmPack
+Running NodejsNpmBuilder:CopyNpmrc
+Running NodejsNpmBuilder:CopySource
+Running NodejsNpmBuilder:NpmInstall
+Running NodejsNpmBuilder:CleanUpNpmrc
+Building codeuri: functions/stock-seller/ runtime: nodejs12.x metadata: {} functions: ['StockSellerFunction']
+Running NodejsNpmBuilder:NpmPack
+Running NodejsNpmBuilder:CopyNpmrc
+Running NodejsNpmBuilder:CopySource
+Running NodejsNpmBuilder:NpmInstall
+Running NodejsNpmBuilder:CleanUpNpmrc
+Building codeuri: functions/stock-buyer/ runtime: nodejs12.x metadata: {} functions: ['StockBuyerFunction']
+Running NodejsNpmBuilder:NpmPack
+Running NodejsNpmBuilder:CopyNpmrc
+Running NodejsNpmBuilder:CopySource
+Running NodejsNpmBuilder:NpmInstall
+Running NodejsNpmBuilder:CleanUpNpmrc
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Invoke Function: sam local invoke
+[*] Deploy: sam deploy --guided
 ```
 
 The SAM CLI installs dependencies defined in `functions/*/package.json`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
@@ -66,7 +94,7 @@ The application template uses AWS Serverless Application Model (AWS SAM) to defi
 Deploy to AWS cloud.
 
 ```bash
-sam-lambda-step-functions$ sam deploy --guided
+𝜆 sam deploy --guided
 
 Configuring SAM deploy
 ======================
@@ -75,7 +103,7 @@ Configuring SAM deploy
 
 	Setting default arguments for 'sam deploy'
 	=========================================
-	Stack Name [sam-app]: stock-trade-example
+	Stack Name [sam-app]: stock-trading-example
 	AWS Region [us-east-1]: ap-southeast-2
 	#Shows you resources changes to be deployed and require a 'Y' to initiate deploy
 	Confirm changes before deploy [y/N]: Y
@@ -96,14 +124,14 @@ Configuring SAM deploy
 	Learn more about samconfig.toml syntax at
 	https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
 
-Uploading to stock-trade-example/45bd9a8dff25082b8f6d078abb1b3581  2839 / 2839.0  (100.00%)
-Uploading to stock-trade-example/e230f830ea421fc0678e2c109b976769  776 / 776.0  (100.00%)
-Uploading to stock-trade-example/eafb6251f887c4d75835ab87633d8e93  1056 / 1056.0  (100.00%)
-Uploading to stock-trade-example/6ed3a404d1c3440b63bd4723eaef7120  1056 / 1056.0  (100.00%)
+Uploading to stock-trading-example/45bd9a8dff25082b8f6d078abb1b3581  2839 / 2839.0  (100.00%)
+Uploading to stock-trading-example/e230f830ea421fc0678e2c109b976769  776 / 776.0  (100.00%)
+Uploading to stock-trading-example/eafb6251f887c4d75835ab87633d8e93  1056 / 1056.0  (100.00%)
+Uploading to stock-trading-example/6ed3a404d1c3440b63bd4723eaef7120  1056 / 1056.0  (100.00%)
 
 	Deploying with following values
 	===============================
-	Stack name                   : stock-trade-example
+	Stack name                   : stock-trading-example
 	Region                       : ap-southeast-2
 	Confirm changeset            : True
 	Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-1qfxu9y982ao
@@ -113,14 +141,14 @@ Uploading to stock-trade-example/6ed3a404d1c3440b63bd4723eaef7120  1056 / 1056.0
 
 Initiating deployment
 =====================
-Uploading to stock-trade-example/e7bf04fd9d13ec8e17b44cf141ab37eb.template  2894 / 2894.0  (100.00%)
+Uploading to stock-trading-example/e7bf04fd9d13ec8e17b44cf141ab37eb.template  2894 / 2894.0  (100.00%)
 
 Waiting for changeset to be created..
 
 CloudFormation stack changeset
--------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 Operation  LogicalResourceId                                  ResourceType                       Replacement
--------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 + Add      StockBuyerFunctionRole                             AWS::IAM::Role                     N/A
 + Add      StockBuyerFunction                                 AWS::Lambda::Function              N/A
 + Add      StockCheckerFunctionRole                           AWS::IAM::Role                     N/A
@@ -132,7 +160,7 @@ Operation  LogicalResourceId                                  ResourceType      
 + Add      StockTradingStateMachineRole                       AWS::IAM::Role                     N/A
 + Add      StockTradingStateMachine                           AWS::StepFunctions::StateMachine   N/A
 + Add      TransactionTable                                   AWS::DynamoDB::Table               N/A
--------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 
 Changeset created successfully. arn:aws:cloudformation:ap-southeast-2:755034721059:changeSet/samcli-deploy1609938097/5fce5885-ab8e-4961-8803-4c4dd8ffdc50
 
@@ -144,9 +172,9 @@ Deploy this changeset? [y/N]: Y
 2021-01-07 00:02:02 - Waiting for stack create/update to complete
 
 CloudFormation events from changeset
--------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
 ResourceStatus      ResourceType                      LogicalResourceId                                  ResourceStatusReason
--------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
 CREATE_IN_PROGRESS  AWS::DynamoDB::Table              TransactionTable                                   Resource creation Initiated
 CREATE_IN_PROGRESS  AWS::IAM::Role                    StockSellerFunctionRole                            -
 CREATE_IN_PROGRESS  AWS::DynamoDB::Table              TransactionTable                                   -
@@ -180,23 +208,23 @@ CREATE_COMPLETE     AWS::IAM::Role                    StockTradingStateMachineHo
 CREATE_IN_PROGRESS  AWS::Events::Rule                 StockTradingStateMachineHourlyTradingSchedule      -
 CREATE_IN_PROGRESS  AWS::Events::Rule                 StockTradingStateMachineHourlyTradingSchedule      Resource creation Initiated
 CREATE_COMPLETE     AWS::Events::Rule                 StockTradingStateMachineHourlyTradingSchedule      -
-CREATE_COMPLETE     AWS::CloudFormation::Stack        stock-trade-example                                -
--------------------------------------------------------------------------------------------------------------------------------------
+CREATE_COMPLETE     AWS::CloudFormation::Stack        stock-trading-example                              -
+------------------------------------------------------------------------------------------------------------------------------------
 
 CloudFormation outputs from deployed stack
-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 Outputs
-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 Key                 StockTradingStateMachineArn
 Description         Stock Trading state machine ARN
 Value               arn:aws:states:ap-southeast-2:755034721059:stateMachine:StockTradingStateMachine-O2WHhrwtOckF
 
 Key                 StockTradingStateMachineRole
 Description         IAM Role created for Stock Trading state machine based on the specified SAM Policy Templates
-Value               arn:aws:iam::755034721059:role/stock-trade-example-StockTradingStateMachineRole-JCFDWTPY1CGR
------------------------------------------------------------------------------------------------------------------
+Value               arn:aws:iam::755034721059:role/stock-trading-example-StockTradingStateMachineRole-JCFDWTPY1CGR
+------------------------------------------------------------------------------------------------------------------
 
-Successfully created/updated stack - stock-trade-example in ap-southeast-2
+Successfully created/updated stack - stock-trading-example in ap-southeast-2
 ```
 
 ## Fetch, tail, and filter Lambda function logs
@@ -206,7 +234,7 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-sam-lambda-step-functions$ sam logs -n StockCheckerFunction --stack-name sam-lambda-step-functions --tail
+𝜆 sam logs -n StockCheckerFunction --stack-name stock-trading-example --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
@@ -216,9 +244,9 @@ You can find more information and examples about filtering Lambda function logs 
 Tests are defined in the `functions/*/tests` folder in this project. Use NPM to install the [Mocha test framework](https://mochajs.org/) and run unit tests.
 
 ```bash
-sam-lambda-step-functions$ cd functions/stock-checker
-stock-checker$ npm install
-stock-checker$ npm run test
+𝜆 cd functions/stock-checker
+𝜆 npm install
+𝜆 npm run test
 ```
 
 ## Cleanup
@@ -226,7 +254,7 @@ stock-checker$ npm run test
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
-aws cloudformation delete-stack --stack-name sam-lambda-step-functions
+𝜆 aws cloudformation delete-stack --stack-name stock-trading-example
 ```
 
 ## Resources
