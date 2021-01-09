@@ -96,7 +96,7 @@ The SAM CLI installs dependencies defined in `functions/*/package.json`, creates
 ## Use the SAM CLI to deploy AWS Cloud
 
 ```bash
-𝜆 sam deploy
+𝜆 sam deploy --no-confirm-changeset
 Uploading to sam-sync-express-step-functions/5b1ae4f46a622c88c1422e8a90f99923  3273 / 3273.0  (100.00%)
 
 	Deploying with following values
@@ -134,11 +134,6 @@ Operation  LogicalResourceId                       ResourceType                 
 ------------------------------------------------------------------------------------------------
 
 Changeset created successfully. arn:aws:cloudformation:ap-southeast-2:755034721059:changeSet/samcli-deploy1610082245/0717a5cf-a8f5-4bfd-bdf5-816c95d07209
-
-
-Previewing CloudFormation changeset before deployment
-======================================================
-Deploy this changeset? [y/N]: y
 
 2021-01-08 16:04:50 - Waiting for stack create/update to complete
 
