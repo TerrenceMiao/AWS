@@ -2,7 +2,7 @@
 
 A boilerplate AWS SAM template using AWS Lambda and Layers, Typescript and Webpack.
 
-Just prove that `Webpack` should NOT be used in package management in AWS Lambda solution. Use `serverless`, or AWS CDK / SAM instead.
+Just prove that `Webpack` should NOT be used in package management in AWS Lambda solution. Use `serverless`, or `AWS CDK` and `AWS SAM` instead.
 
 - Run `npm install` and `npm run build:prod` under **apis/helloworld/functions/greeting** directory
 - Run `npm install` and `npm run build:prod` under **apis/helloworld/layers/api-responses** directory
