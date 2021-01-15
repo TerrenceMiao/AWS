@@ -1,0 +1,109 @@
+{
+  "Comment": "State machine for notification workflow!",
+  "StartAt": "EvaluateRequest",
+  "States":
+  {
+      "EvaluateRequest":
+      {
+          "Type": "Task",
+          "Resource": "arn:aws:lambda:ap-southeast-2:755034721059:function:EvaluateRequest",
+          "Next": "NotificationFlow"
+
+      },
+      "NotificationFlow":
+      {
+          "Type": "Parallel",
+          "End": true,
+          "Branches": [
+          {
+              "StartAt": "ChoiceStateEmail",
+              "States":
+              {
+                  "ChoiceStateEmail":
+                  {
+                      "Type": "Choice",
+                      "Choices": [
+                      {
+
+                          "Variable": "$.isEmail",
+                          "BooleanEquals": true,
+                          "Next": "SendEmailNotification"
+                      }],
+                      "Default": "DefaultEmailState"
+                  },
+                  "SendEmailNotification":
+                  {
+                      "Type": "Task",
+                      "Resource": "arn:aws:lambda:ap-southeast-2:755034721059:function:SendEmailNotification",
+                      "End": true
+                  },
+                  "DefaultEmailState":
+                  {
+                      "Type": "Pass",
+                      "Result":
+                      {},
+                      "End": true
+                  }
+              }
+          },
+          {
+              "StartAt": "ChoiceStateSMS",
+              "States":
+              {
+                  "ChoiceStateSMS":
+                  {
+                      "Type": "Choice",
+                      "Choices": [
+                      {
+                          "Variable": "$.isSMS",
+                          "BooleanEquals": true,
+                          "Next": "SendSMSNotification"
+                      }],
+                      "Default": "DefaultSMSState"
+                  },
+                  "SendSMSNotification":
+                  {
+                      "Type": "Task",
+                      "Resource": "arn:aws:lambda:ap-southeast-2:755034721059:function:SendSMSNotification",
+                      "End": true
+                  },
+                  "DefaultSMSState":
+                  {
+                      "Type": "Pass",
+                      "Result": "",
+                      "End": true
+                  }
+              }
+          },
+          {
+              "StartAt": "ChoiceStateSlack",
+              "States":
+              {
+                  "ChoiceStateSlack":
+                  {
+                      "Type": "Choice",
+                      "Choices": [
+                      {
+                          "Variable": "$.isSlack",
+                          "BooleanEquals": true,
+                          "Next": "SendSlackNotification"
+                      }],
+                      "Default": "DefaultSlackState"
+                  },
+                  "SendSlackNotification":
+                  {
+                      "Type": "Task",
+                      "Resource": "arn:aws:lambda:ap-southeast-2:755034721059:function:SendSlackNotification",
+                      "End": true
+                  },
+                  "DefaultSlackState":
+                  {
+                      "Type": "Pass",
+                      "Result": "",
+                      "End": true
+                  }
+              }
+          }]
+      }
+  }
+}

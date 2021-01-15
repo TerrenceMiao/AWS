@@ -1,0 +1,18 @@
+{
+  "email" : {
+    "emailAddress": "terrence.miao@gmail.com",
+    "subject" : "sample subject from builder session",
+    "messageBody" : "test email body"
+  },
+  "sms" : {
+    "phoneNumber" : "+61413602286",
+    "messageBody" : "test sms"
+  },
+  "slack" : {
+    "webhook": "https://hooks.slack.com/services/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",
+    "messageBody" : {
+      "channel": "#aws",
+      "text": "test slack message"
+    }
+  }
+}
