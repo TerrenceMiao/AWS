@@ -1,11 +1,11 @@
 {
   "email" : {
-    "emailAddress": "terrence.miao@gmail.com",
+    "emailAddress": "terrence miao at paradise dot org",
     "subject" : "sample subject from builder session",
     "messageBody" : "test email body"
   },
   "sms" : {
-    "phoneNumber" : "+61413602286",
+    "phoneNumber" : "+61412345678",
     "messageBody" : "test sms"
   },
   "slack" : {

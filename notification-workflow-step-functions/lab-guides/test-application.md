@@ -55,7 +55,7 @@ ___
 
     ![Result](images/result.png)
 
-3. Verify that you have received **email, SMS or slack** message as per provided request JSON.
+3. Verify that you have received **email, SMS or slack** message as per provided request JSON. Email need to subscribed and confirmed in [Amazon Simple Email Service](https://aws.amazon.com/ses/) (Amazon Simple Email Service).
 
 **You can also send messages only to selected notification channels by modifying the input request JSON. Example - If you do not provide the SMS JSON object in request JSON then SMS will not be sent.**
 
