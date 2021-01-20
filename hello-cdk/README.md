@@ -1,8 +1,44 @@
 # Welcome to your CDK TypeScript project!
 
+Time to rock.
+## Kick off
+
+Upgrade to latest `AWS CDK`:
+
+```
+𝜆 sudo npm install -g aws-cdk@latest
+Password:
+/usr/local/bin/cdk -> /usr/local/lib/node_modules/aws-cdk/bin/cdk
++ aws-cdk@1.85.0
+updated 11 packages in 11.846s
+
+𝜆 cdk --version
+1.85.0 (build 5f44668)
+```
+
+Initiate a `AWS CDK` project:
+
+```
+𝜆 mkdir cdk
+𝜆 cd cdk
+
+𝜆 cdk init app --language typescript
+Applying project template app for typescript
+# Welcome to your CDK TypeScript project!
+
 This is a blank project for TypeScript development with CDK.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
+
+...
+
+Initializing a new git repository...
+Executing npm install...
+
+...
+
+✅ All done!
+```
 
 ## Useful commands
 
