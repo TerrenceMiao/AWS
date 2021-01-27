@@ -1,0 +1,7 @@
+{
+  "Parameters": {
+    "TABLE_NAME": "localtable",
+    "BUCKET_NAME": "testBucket",
+    "STAGE": "dev"
+  }
+}

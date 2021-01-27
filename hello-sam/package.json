@@ -1,0 +1,11 @@
+{
+  "name": "hello-sam",
+  "version": "1.0.0",
+  "description": "Hello AWS SAM",
+  "repository": "TODO",
+  "author": "SAM CLI",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.831.0"
+  }
+}

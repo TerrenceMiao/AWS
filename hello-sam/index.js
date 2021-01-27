@@ -12,8 +12,10 @@ exports.handler = async function(event, context) {
     TopicArn: process.env.SNS_TOPIC_ARN
   };
 
+  console.log('This is Hello World event');
+
   try {
-    await sns.publish(params).promise()
+    await sns.publish(params).promise();
     return { statusCode: 200, body: 'Message sent' };
   } catch(err) {
     return { statusCode: 500, body: JSON.stringify(err) };
