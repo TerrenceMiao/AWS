@@ -98,7 +98,7 @@ In addition, need `package.json` file, for running and debugging locally with al
 
 In VS Code, click `Run` icon on the left bar, then click on `Run and Debug`, to customize `Run and Debug`, and create a launch.json file.
 
-Click on `create a launch.json file`, select the project `hello-sam` in this case, and select `AWS SAM: Debug Lambda Function Locally` in the drop down list, `launch.json` file automatically created under `.vscode/`, same directory along with `template.yaml` file.
+Click on `create a launch.json file`, select the workspace, `hello-sam` in this case, and select `AWS SAM: Debug Lambda Function Locally` in the drop down list, `launch.json` file automatically created under `.vscode/`, same directory along with `template.yaml` file.
 
 ![AWS Toolkit for VS Code](AWS-Toolkit.png "AWS Toolkit for VS Code")
 
