@@ -93,7 +93,8 @@ Commands:
 
 Need to have `AWS Toolkit` extension installed in advance.
 
-In addition, need `package.json` file, for running and debugging locally, although `AWS SAM` application doesn't require if bind a localhost port and run Lambda function locally. Check _https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-debugging-nodejs.html_
+In addition, need `package.json` file, for running and debugging locally with all npm modules dependencies.
+
 
 In VS Code, click `Run` icon on the left bar, then click on `Run and Debug`, to customize `Run and Debug`, and create a launch.json file.
 
@@ -147,6 +148,8 @@ Debugger attached
 REPORT RequestId: 83fcabeb-4a08-498f-8fc9-47a175bc6e0c	Init Duration: 1.57 ms	Duration: 16412.32 ms	Billed Duration: 16500 ms	Memory Size: 128 MB	Max Memory Used: 128 MB
 Command stopped: "sam local invoke"
 ```
+
+`AWS SAM` also can bind a localhost port, run & debug Lambda function locally. Check _https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-debugging-nodejs.html_
 
 References
 ----------
