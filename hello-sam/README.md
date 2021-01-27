@@ -1,5 +1,27 @@
 # Hello SAM
 
+- Making a successful build at first:
+
+```
+𝜆 sam build
+Building codeuri: . runtime: nodejs12.x metadata: {} functions: ['HelloWorldFunction']
+Running NodejsNpmBuilder:NpmPack
+Running NodejsNpmBuilder:CopyNpmrc
+Running NodejsNpmBuilder:CopySource
+Running NodejsNpmBuilder:NpmInstall
+Running NodejsNpmBuilder:CleanUpNpmrc
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Invoke Function: sam local invoke
+[*] Deploy: sam deploy --guided
+```
+
 - Running `AWS Lambda` locally:
 
 ```
