@@ -173,6 +173,14 @@ Command stopped: "sam local invoke"
 
 `AWS SAM` also can bind a localhost port, run & debug Lambda function locally. Check _https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-debugging-nodejs.html_
 
+Generate **template.yaml** file for `AWS SAM` from `AWS CDK`:
+
+```
+𝜆 cdk synth --no-staging > template.yaml
+```
+
+VS Code configuration:
+
 ```
 𝜆 cat .vscode/launch.json
 {
@@ -197,7 +205,7 @@ Command stopped: "sam local invoke"
 }
 ```
 
-VS Code configuration:
+Start Lambda function and bind to default localhost port ***5858*:
 
 ```
 𝜆 sam local invoke RequestNotification9F9F3C31 -e samples/api-gateway-event.json -d 5858
